@@ -1,47 +1,56 @@
 <?php
-    require_once "pdo.php";
-    session_start();
-    if(isset($_GET['sess_id'])){
-        $stmt=$pdo->prepare("SELECT `semester`.`sem_id` FROM `sessions` INNER JOIN `modules` ON `sessions`.`mod_id`=`modules`.`mod_id` INNER JOIN `subject` ON `subject`.`sub_id`=`modules`.`sub_id` INNER JOIN `semester` ON `semester`.`sem_id`=`subject`.`sem_id` WHERE `sessions`.sess_id= :xyz");
-        $stmt->execute(array(":xyz"=>$_GET["sess_id"]));
-        $row=$stmt->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['sem']=$row['sem_id'];
-        $_SESSION['sess']=$_GET['sess_id'];
-        $stmt1=$pdo->prepare("SELECT `students`.`student_id`, `users`.`name` FROM `students` INNER JOIN `users` ON `students`.`user_id`=`users`.user_id  WHERE `students`.`sem_id` = :xyz");
-        $stmt1->execute(array(":xyz"=>$_SESSION['sem']));
-        $row=$stmt1->fetch(PDO::FETCH_ASSOC);
-    }
-    elseif(isset($_GET['stuid'])&& isset($_GET['abs'])){
-        if($_GET['abs']=='1'){
-            $sql = "INSERT INTO attendence (student_id, sess_id, present)
-            VALUES (:name, :email, :password)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(array(
-      ':name' => $_GET['stuid'],
-      ':email' => $_SESSION['sess'],
-      ':password' => 0));
-        }
-        else{
-            if($_GET['abs']=='1'){
-                $sql = "INSERT INTO attendence (student_id, sess_id, present)
-                VALUES (:name, :email, :password)";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute(array(
-          ':name' => $_GET['stuid'],
-          ':email' => $_SESSION['sess'],
-          ':password' => 1));
-        }
-        $_SESSION['pdo']->execute(array(":xyz"=>$_SESSION['sem']));
-        $row=$_SESSION['pdo']->fetch(PDO::FETCH_ASSOC);
-        if( $row=== false){
-            $_SESSION['success']='Attendence Recorded';
+require_once "pdo.php";
+session_start();
+
+if (isset($_GET['sess_id'])) {
+    $stmt = $pdo->prepare("SELECT `semester`.`sem_id` FROM `sessions` INNER JOIN `modules` ON `sessions`.`mod_id` = `modules`.`mod_id` INNER JOIN `subject` ON `subject`.`sub_id` = `modules`.`sub_id` INNER JOIN `semester` ON `semester`.`sem_id` = `subject`.`sem_id` WHERE `sessions`.sess_id = :xyz");
+    $stmt->execute(array(":xyz" => $_GET["sess_id"]));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['sem'] = $row['sem_id'];
+    $_SESSION['sess'] = $_GET['sess_id'];
+    $_SESSION['sql'] = "SELECT `students`.`student_id`, `users`.`name` FROM `students` INNER JOIN `users` ON `students`.`user_id` = `users`.user_id  WHERE `students`.`sem_id` = :xyz";
+    $sql = $_SESSION['sql'] . " LIMIT 1";
+    $stmt1 = $pdo->prepare($sql);
+    $stmt1->execute(array(":xyz" => $_SESSION['sem']));
+    $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+} elseif (isset($_GET['stuid']) && isset($_GET['abs'])) {
+    if ($_GET['abs'] == '1') {
+        $sql = "INSERT INTO attendence (student_id, sess_id, present) VALUES (:name, :email, :password)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ':name' => $_GET['stuid'],
+            ':email' => $_SESSION['sess'],
+            ':password' => 0
+        ));
+        $_SESSION['sql'] = $_SESSION['sql'] . " AND NOT `students`.`student_id` = " . $_GET['stuid'];
+        $stmt1 = $pdo->prepare($_SESSION['sql'] . " LIMIT 1");
+        $stmt1->execute(array(":xyz" => $_SESSION['sem']));
+        $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+        if ($row == false) {
+            unset($_SESSION['sql'], $_SESSION['sem'], $_SESSION['sess']);
             header('Location: takeat.php');
-            return;
+            exit; // Make sure to exit after redirection
+        }
+    } else {
+        // The else block seems to be duplicated, so I'm removing the duplication
+        $sql = "INSERT INTO attendence (student_id, sess_id, present) VALUES (:name, :email, :password)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ':name' => $_GET['stuid'],
+            ':email' => $_SESSION['sess'],
+            ':password' => 1
+        ));
+        $_SESSION['sql'] = $_SESSION['sql'] . " AND NOT `students`.`student_id` = " . $_GET['stuid'];
+        $stmt1 = $pdo->prepare($_SESSION['sql'] . " LIMIT 1");
+        $stmt1->execute(array(":xyz" => $_SESSION['sem']));
+        $row = $stmt1->fetch(PDO::FETCH_ASSOC);
+        if ($row == false) {
+            unset($_SESSION['sql'], $_SESSION['sem'], $_SESSION['sess']);
+            header('Location: takeat.php');
+            exit; // Make sure to exit after redirection
         }
     }
 }
-    
-    
 ?>
 
 
