@@ -53,7 +53,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="student.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Attendance</span></a>
@@ -65,7 +65,7 @@
                     <span>Marks</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="assignments.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Assignments</span></a>
@@ -240,6 +240,78 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+<!-- Page Heading -->
+
+<!-- Content Row -->
+<div class="row"> 
+</div>
+                        <!-- Donut Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Assignments</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="myPieChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Assignments</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Title</th>
+                        <th>Submission date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Title</th>
+                        <th>Submission date</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>OOPS</td>
+                        <td>Assignment 2</td>
+                        <td>July 12</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>IP</td>
+                        <td>Assignment 1</td>
+                        <td>June 30</td>
+                        <td>Missed</td>
+                    </tr>
+                    <tr>
+                        <td>DCN</td>
+                        <td>Assignment 2</td>
+                        <td>July 4</td>
+                        <td>Done</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">
                     <!DOCTYPE html>
@@ -253,7 +325,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Charts</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -284,95 +355,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Charts</h1>
+                    <h1 class="h3 mb-2 text-gray-800"></h1>
 
-                    <!-- Content Row -->
-                    <div class="row">
 
-                        <div class="col-xl-8 col-lg-7">
-
-                            <!-- Bar Chart -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Monthly Attendance</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Donut Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Classes</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <!-- DataTales Example -->
-                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Session Id</th>
-                                            <th>Subject Name</th>
-                                            <th>Teacher</th>
-                                            <th>Date&Time</th>
-                                            <th>Attendance</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Session Id</th>
-                                            <th>Subject Name</th>
-                                            <th>Teacher</th>
-                                            <th>Date&Time</th>
-                                            <th>Attendance</th>
-                                            <th>Description</th>
-
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>DCN</td>
-                                            <td>Dr.Binsu C Kovoor</td>
-                                            <td>31/06/23(9:00-10:00)</td>
-                                            <td>Absent</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>IP</td>
-                                            <td>Lima Johnson</td>
-                                            <td>31/06/23(10:00-11:00)</td>
-                                            <td>Present</td>
-                                        </tr>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -427,7 +412,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-pie-demo2.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
