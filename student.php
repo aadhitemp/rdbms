@@ -4,13 +4,13 @@
     if(!isset($_SESSION["user_id"])){
         header('Location: logout.php');
         return;
-    }
-    $stmt=$pdo->prepare("SELECT sessions.sess_id, subjects.sub_name, sessions.date_time
-    FROM sessions
+    }/*sessionid, subject name, teacher, date&yime, attendence, description */
+    $stmt=$pdo->prepare("SELECT `sessions`.`sess_id`, `subject`.`sub_name`, `sessions`.`date_time`, `attendence`.`present`, `sessions`.`descri`
+    FROM `attendence` INNER JOIN `sessions` ON `attendence`.`sess_id`=`sessions`.`sess_id`
     INNER JOIN modules ON sessions.mod_id = modules.mod_id
-    INNER JOIN subjects ON modules.sub_id = subjects.sub_id")
+    INNER JOIN subject ON modules.sub_id = subject.sub_id WHERE `attendence`.`student_id` = :xyz")
     ;
-    $stmt->execute(array(":xyz"=>$_SESSION["user_id"]));
+    $stmt->execute(array(":xyz"=>$_SESSION["student_id"]));
 ?>
 
 
@@ -342,7 +342,6 @@
                                         <tr>
                                             <th>Session Id</th>
                                             <th>Subject Name</th>
-                                            <th>Teacher</th>
                                             <th>Date&Time</th>
                                             <th>Attendance</th>
                                             <th>Description</th>
@@ -352,7 +351,6 @@
                                         <tr>
                                             <th>Session Id</th>
                                             <th>Subject Name</th>
-                                            <th>Teacher</th>
                                             <th>Date&Time</th>
                                             <th>Attendance</th>
                                             <th>Description</th>
@@ -360,20 +358,6 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>DCN</td>
-                                            <td>Dr.Binsu C Kovoor</td>
-                                            <td>31/06/23(9:00-10:00)</td>
-                                            <td>Absent</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>IP</td>
-                                            <td>Lima Johnson</td>
-                                            <td>31/06/23(10:00-11:00)</td>
-                                            <td>Present</td>
-                                        </tr>
                                         <?php
                                     while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
                                         echo "<tr><td>";
@@ -383,13 +367,15 @@
                                         echo("</td><td>");
                                         echo(htmlentities($row['date_time']));
                                         echo("</td><td>");
-                                        if(present==1){
-                                        echo("Present")};
-                                        else{echo("absent")};
+                                        if($row['present']==1){
+                                        echo("Present");
+                                    }
+                                        else{
+                                            echo("Absent");
+                                        }
+                                
                                         echo("</td><td>");
-                                        echo(htmlentities($_SESSION['name']));
-                                        echo("</td><td>");
-                                        echo('<a href="student.php?sess_id='.$row['sess_id'].'">Take</a> / ');
+                                        echo(htmlentities($row['descri']));
                                         echo("</td></tr>\n");
                                     }
                                     ?>
