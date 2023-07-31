@@ -2,7 +2,7 @@
     require_once "pdo.php";
     session_start();
     if(isset($_SESSION["userid"])){
-        header('Location: indexcop.html');
+        header('Location: home.html');
     }
     if(isset($_POST["email"]) && isset($_POST["pass"]) && isset($_POST['name'])) {
         $stmt=$pdo->prepare("SELECT user_id FROM users WHERE email = :xyz");
@@ -28,7 +28,12 @@
       ':email' => $_POST['email'],
       ':password' => $pas));
             $_SESSION['success'] = 'User registered, login here.';
-             header( 'Location: index.php' ) ;
+
+			$stmt=$pdo->prepare("SELECT user_id, password FROM users WHERE email = :xyz");
+			$stmt->execute(array(":xyz"=>$_POST["email"]));
+			$row=$stmt->fetch(PDO::FETCH_ASSOC);
+			$_SESSION["userid"]=$row['user_id'];
+             header( 'Location: usertypereg.php' ) ;
             return;
         }
         else{
@@ -113,14 +118,14 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Register
+							Continue
                             <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</button>
 					</div>
 
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="index.php">
+						<a class="txt2" href="login.php">
 							Already registered? Login here
 						</a>
 					</div>
