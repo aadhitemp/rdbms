@@ -5,17 +5,8 @@
         header('Location: logout.php');
         return;
     }
-    if(isset($_POST['dept']) && isset($_POST['course']) && isset($_POST['semester']) && isset($_POST['subject']) && isset($_POST['module'])&& isset($_POST['eventDateTime']) && isset($_POST['eventDescription'])){
-        $sql = "INSERT INTO sessions (teacher_id, mod_id, descri, date_time)
-		VALUES (:tchr, :mod, :descr, :dtm)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(array(
-            ':tchr' => $_SESSION['teacher_id'],
-            ':mod' => $_POST['module'],
-            ':descr' => $_POST['eventDescription'],
-            ':dtm' => $_POST['eventDateTime']
-            ));
-    }
+    $stmt=$pdo->prepare("SELECT * FROM sessions WHERE teacher_id = :xyz");
+    $stmt->execute(array(":xyz"=>$_SESSION["teacher_id"]));
 ?>
 
 
@@ -64,7 +55,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="teacher.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Create Session</span></a>
@@ -74,7 +65,7 @@
 
 
             <!-- Heading -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="takeat.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Take Attendence</span></a>
@@ -248,124 +239,67 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-4 text-gray-800">Create session</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Take Attendence</h1>
                     </div>
                     <div class="row">
                         
 
                         <div class="col-xl-8 col-lg-7">
-                         <form method="POST">
-                         
-                         <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="dept">Department:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <select id="dept" name="dept">
-                                <option value="1">Information Technology</option>
-                                 <option value="2">Computer Science</option>
-                             </select><br>  
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="course">Course:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <select id="course" name="course">
-                                <option value="1">B.tech</option>
-                                 <option value="2">M.tech</option>
-                             </select><br>  
-                                </div>
-                            </div>
-
-
-                             <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="semester">Semester:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <select id="semester" name="semester">
-                                <option value="4">IV</option>
-                                 <option value="2">II</option>
-                                 <option value="3">III</option>
-                                <option value="1">I</option>
-                             </select><br>  
-                                </div>
-                            </div>
-
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="subject">Subject:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <select id="subject" name="subject">
-                                <option value="1">Internet Programming</option>
-                                 <option value="2">Complex Variables and Partial Differentiation </option>
-                                 <option value="3">Object Oriented Programming</option>
-                                <option value="4">Universal Human Values</option>
-                             </select><br>  
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="module">Module:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <select id="module" name="module">
-                                <option value="1">HTML and CSS</option>
-                                 <option value="2">JavaScript </option>
-                                 <option value="3">PHP</option>
-                                <option value="4">Ajax and Ruby</option>
-                             </select><br>  
-                                </div>
-                            </div>
-
-                            
-                            
-
-                        
-                            
-                         <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="eventDateTime">Date and Time:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-        <input type="datetime-local" id="eventDateTime" name="eventDateTime"><br>
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> <label for="eventDescription">Description:</label></h6>
-                                </div>
-                                <div class="card-body">
-                                
-                               
-                                <textarea id="eventDescription" name="eventDescription" rows="4" cols="50"></textarea><br>
-                                </div>
-                            </div>
-                        
-
-                            <input type="submit" value="Create">
-                         </form>
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                </div>   
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Session id</th>
+                                            <th>Module</th>
+                                            <th>Date and time</th>
+                                            <th>Description</th>
+                                            <th>Teacher</th>
+                                            <th>Take/Edit/Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                        <th>Session id</th>
+                                            <th>Module</th>
+                                            <th>Date and time</th>
+                                            <th>Description</th>
+                                            <th>Teacher</th>
+                                            <th>Take/Edit/Delete</th>
+                                        </tr>
+                                    </tfoot>
+                                    <?php
+                                    while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+                                        echo "<tr><td>";
+                                        echo(htmlentities($row['sess_id']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($row['mod_id']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($row['date_time']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($row['descri']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($_SESSION['name']));
+                                        echo("</td><td>");
+                                        echo('<a href="take.php?sess_id='.$row['sess_id'].'">Take</a> / ');
+                                        echo('<a href="edit.php?sess_id='.$row['sess_id'].'">Edit</a> / ');
+                                        echo('<a href="delete.php?sess_id='.$row['sess_id'].'">Delete</a>');
+                                        echo("</td></tr>\n");
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+  
+            
                     <!--TODO: -->
 
                 </div>
