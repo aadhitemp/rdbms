@@ -68,7 +68,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="takeat.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Take Attendence</span></a>
+                    <span>Take/Edit Attendence</span></a>
             </li>
 
 
@@ -247,7 +247,7 @@
                         <div class="col-xl-8 col-lg-7">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Sessions</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -259,7 +259,7 @@
                                             <th>Date and time</th>
                                             <th>Description</th>
                                             <th>Teacher</th>
-                                            <th>Take/Edit/Delete</th>
+                                            <th>Take/Edit</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -269,7 +269,7 @@
                                             <th>Date and time</th>
                                             <th>Description</th>
                                             <th>Teacher</th>
-                                            <th>Take/Edit/Delete</th>
+                                            <th>Take/Edit</th>
                                         </tr>
                                     </tfoot>
                                     <?php
@@ -286,8 +286,7 @@
                                         echo(htmlentities($_SESSION['name']));
                                         echo("</td><td>");
                                         echo('<a href="take.php?sess_id='.$row['sess_id'].'">Take</a> / ');
-                                        echo('<a href="edit.php?sess_id='.$row['sess_id'].'">Edit</a> / ');
-                                        echo('<a href="delete.php?sess_id='.$row['sess_id'].'">Delete</a>');
+                                        echo('<a href="edit.php?sess_id='.$row['sess_id'].'">Edit</a>  ');
                                         echo("</td></tr>\n");
                                     }
                                     ?>
