@@ -5,6 +5,12 @@
         header('Location: logout.php');
         return;
     }
+    $stmt=$pdo->prepare("SELECT sessions.sess_id, subjects.sub_name, sessions.date_time
+    FROM sessions
+    INNER JOIN modules ON sessions.mod_id = modules.mod_id
+    INNER JOIN subjects ON modules.sub_id = subjects.sub_id")
+    ;
+    $stmt->execute(array(":xyz"=>$_SESSION["user_id"]));
 ?>
 
 
@@ -368,6 +374,25 @@
                                             <td>31/06/23(10:00-11:00)</td>
                                             <td>Present</td>
                                         </tr>
+                                        <?php
+                                    while ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
+                                        echo "<tr><td>";
+                                        echo(htmlentities($row['sess_id']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($row['sub_name']));
+                                        echo("</td><td>");
+                                        echo(htmlentities($row['date_time']));
+                                        echo("</td><td>");
+                                        if(present==1){
+                                        echo("Present")};
+                                        else{echo("absent")};
+                                        echo("</td><td>");
+                                        echo(htmlentities($_SESSION['name']));
+                                        echo("</td><td>");
+                                        echo('<a href="student.php?sess_id='.$row['sess_id'].'">Take</a> / ');
+                                        echo("</td></tr>\n");
+                                    }
+                                    ?>
                                         </tbody>
                                 </table>
                             </div>
