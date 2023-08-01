@@ -80,6 +80,12 @@
                     <span>Take/Edit Attendence</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="total.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Total attendence</span></a>
+            </li>
+
 
             <!-- Nav Item - Pages Collapse Menu -->
 

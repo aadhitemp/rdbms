@@ -65,13 +65,13 @@
 
 
             <!-- Heading -->
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="takeat.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Take/Edit Attendence</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="total.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Total attendence</span></a>
@@ -245,7 +245,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-4 text-gray-800">Take Attendence</h1>
+                        <h1 class="h3 mb-4 text-gray-800">Total Attendence</h1>
                     </div>
                     <div class="row">
                         
@@ -260,22 +260,16 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Session id</th>
-                                            <th>Module</th>
-                                            <th>Date and time</th>
-                                            <th>Description</th>
-                                            <th>Teacher</th>
-                                            <th>Take/Edit</th>
+                                            <th>Student</th>
+                                            <th>Semester</th>
+                                            <th>Total attendance</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Session id</th>
-                                            <th>Module</th>
-                                            <th>Date and time</th>
-                                            <th>Description</th>
-                                            <th>Teacher</th>
-                                            <th>Take/Edit</th>
+                                            <th>Student</th>
+                                            <th>Semester</th>
+                                            <th>Total attendance</th>
                                         </tr>
                                     </tfoot>
                                     <?php
