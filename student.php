@@ -74,7 +74,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="assignments.php">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Assignments</span></a>
+                    <span>Subject wise attendance</span></a>
             </li>
 
 
@@ -296,7 +296,6 @@
                     <div class="row">
 
                         <div class="col-xl-8 col-lg-7">
-                     <script>  <?php echo ('alert("Hello!'.$_SESSION['name'].'");'); ?> </script>
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">

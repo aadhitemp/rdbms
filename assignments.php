@@ -68,7 +68,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="assignments.php">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Assignments</span></a>
+                    <span>Subject wise attendance</span></a>
             </li>
 
 
@@ -244,22 +244,103 @@
 
 <!-- Content Row -->
 <div class="row"> 
-</div>
+
                         <!-- Donut Chart -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Assignments</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">DCN</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-pie pt-4">
-                                        <canvas id="myPieChart2"></canvas>
+                                        <canvas id="pie1"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                         <!-- Donut Chart -->
+                            <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">IP</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="pie2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                <!-- Donut Chart -->
+                                                <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">SE</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="pie3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                 <!-- Donut Chart -->
+                                                 <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">OOPS</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="pie4"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                 <!-- Donut Chart -->
+                                                 <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">CVPD</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="pie5"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Donut Chart -->
+                         <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">OS</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="pie6"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+</div>            
                         <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Assignments</h6>
@@ -415,6 +496,35 @@
     <script src="js/demo/chart-pie-demo2.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
 
+    <?php 
+    echo('<script src="js\demo\pie1.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
+
+<?php 
+    echo('<script src="js\demo\pie2.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
+
+<?php 
+    echo('<script src="js\demo\pie3.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
+
+<?php 
+    echo('<script src="js\demo\pie4.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
+
+<?php 
+    echo('<script src="js\demo\pie5.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
+
+<?php 
+    echo('<script src="js\demo\pie6.php?noofclass'.$var['noofclass'].'&noofpresent='.$var['noofpresent'].'"');
+    echo('></script>');
+    ?>
 </body>
 
 </html>

@@ -68,7 +68,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="assignments.php">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Assignments</span></a>
+                    <span>Subject wise attendance</span></a>
             </li>
 
 
